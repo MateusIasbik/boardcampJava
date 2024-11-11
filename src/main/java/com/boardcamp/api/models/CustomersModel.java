@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,26 +16,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "tb-games")
-public class GamesModel {
-
+@Table(name = "tb-customers")
+public class CustomersModel {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(length = 150, nullable = false)
+    @Column(nullable = false)
     @NotBlank(message = "O nome não pode ser vazio.")
     private String name;
 
-    @Column
-    private String image;
+    @Size(min = 10, max = 11, message = "O número deve ter entre 10 a 11 caracteres.")
+    private String phone;
 
     @Column(nullable = false)
-    @Positive(message = "O estoque deve ser maior que zero.")
-    private int stockTotal;
-
-    @Column(nullable = false)
-    @Positive(message = "O preço deve ser maior que zero.")
-    private int pricePerDay;
-
+    @NotBlank(message = "O nome não pode ser vazio.")
+    @Size(min = 11, max = 11, message = "O número deve ter exatamente 11 caracteres.")
+    private String cpf;
 }
