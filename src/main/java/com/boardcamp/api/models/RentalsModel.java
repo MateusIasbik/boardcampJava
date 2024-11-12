@@ -1,5 +1,6 @@
 package com.boardcamp.api.models;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
@@ -40,7 +41,7 @@ public class RentalsModel {
     @Min(value = 1, message = "O número de dias alugados deve ser maior que 0.")
     private int daysRented;
 
-    private Data returnDate = null;
+    private Date returnDate = null;
 
     private int originalPrice;
 

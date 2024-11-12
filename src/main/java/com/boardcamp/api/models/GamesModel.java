@@ -1,5 +1,7 @@
 package com.boardcamp.api.models;
 
+import com.boardcamp.api.dtos.GamesDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,5 +39,12 @@ public class GamesModel {
     @Column(nullable = false)
     @Positive(message = "O preço deve ser maior que zero.")
     private int pricePerDay;
+
+    public GamesModel(GamesDTO dto) {
+        this.image = dto.getImage();
+        this.name = dto.getName();
+        this.pricePerDay = dto.getPricePerDay();
+        this.stockTotal = dto.getStockTotal();
+    }
 
 }
