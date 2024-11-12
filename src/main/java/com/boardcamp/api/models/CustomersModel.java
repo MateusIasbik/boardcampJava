@@ -1,5 +1,8 @@
 package com.boardcamp.api.models;
 
+import com.boardcamp.api.dtos.CustomersDTO;
+import com.boardcamp.api.dtos.GamesDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,4 +37,11 @@ public class CustomersModel {
     @NotBlank(message = "O nome não pode ser vazio.")
     @Size(min = 11, max = 11, message = "O número deve ter exatamente 11 caracteres.")
     private String cpf;
+
+    public CustomersModel(CustomersDTO dto) {
+        this.name = dto.getName();
+        this.cpf = dto.getCpf();
+        this.phone = dto.getPhone();
+    }
+    
 }
