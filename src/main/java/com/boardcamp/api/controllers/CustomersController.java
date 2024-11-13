@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.boardcamp.api.dtos.CustomersDTO;
-import com.boardcamp.api.dtos.GamesDTO;
 import com.boardcamp.api.models.CustomersModel;
-import com.boardcamp.api.models.GamesModel;
 import com.boardcamp.api.services.CustomersService;
 
 import jakarta.validation.Valid;

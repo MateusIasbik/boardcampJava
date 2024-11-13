@@ -12,9 +12,14 @@ public class GlobalExceptionsHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(exception.getMessage());
     }
 
-    @ExceptionHandler({ CustomerIdNotfoundException.class })
-    public ResponseEntity<String> handlerCustomerIdNotfound(CustomerIdNotfoundException exception) {
+    @ExceptionHandler({ NotfoundException.class })
+    public ResponseEntity<String> handlerCustomerIdNotfound(NotfoundException exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+    }
+
+    @ExceptionHandler({ UnprocessableEntityException.class })
+    public ResponseEntity<String> handlerUnprocessableEntity(UnprocessableEntityException exception) {
+        return ResponseEntity.status(HttpStatus.UNPROCESSABLE_ENTITY).body(exception.getMessage());
     }
     
 }

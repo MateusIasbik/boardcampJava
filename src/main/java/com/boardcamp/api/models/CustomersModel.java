@@ -1,7 +1,6 @@
 package com.boardcamp.api.models;
 
 import com.boardcamp.api.dtos.CustomersDTO;
-import com.boardcamp.api.dtos.GamesDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -43,5 +42,5 @@ public class CustomersModel {
         this.cpf = dto.getCpf();
         this.phone = dto.getPhone();
     }
-    
+
 }

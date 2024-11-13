@@ -6,11 +6,9 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.boardcamp.api.dtos.CustomersDTO;
-import com.boardcamp.api.dtos.GamesDTO;
-import com.boardcamp.api.exceptions.CustomerIdNotfoundException;
+import com.boardcamp.api.exceptions.NotfoundException;
 import com.boardcamp.api.exceptions.ConflictException;
 import com.boardcamp.api.models.CustomersModel;
-import com.boardcamp.api.models.GamesModel;
 import com.boardcamp.api.repositories.CustomersRepository;
 
 @Service
@@ -30,7 +28,7 @@ public class CustomersService {
         Optional<CustomersModel> customer = customersRepository.findById(id);
 
         if(!customer.isPresent()) {
-            throw new CustomerIdNotfoundException("O ID do cliente não foi encontrado.");
+            throw new NotfoundException("O ID do cliente não foi encontrado.");
         }
 
         return customer.get();

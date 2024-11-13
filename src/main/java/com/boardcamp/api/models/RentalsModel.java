@@ -1,7 +1,8 @@
 package com.boardcamp.api.models;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import com.boardcamp.api.dtos.RentalsDTO;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -35,7 +36,7 @@ public class RentalsModel {
     @JoinColumn(name = "gameId", nullable = false)
     private GamesModel game;
 
-    private LocalDateTime rentDate = LocalDateTime.now();
+    private LocalDate rentDate = LocalDate.now();
 
     @Positive
     @Min(value = 1, message = "O número de dias alugados deve ser maior que 0.")
@@ -46,5 +47,11 @@ public class RentalsModel {
     private int originalPrice;
 
     private int delayFee = 0;
+
+    public RentalsModel(RentalsDTO dto, GamesModel games, CustomersModel customer) {
+        this.daysRented = dto.getDaysRented();
+        this.customer = customer;
+        this.game = games;
+    }
 
 }

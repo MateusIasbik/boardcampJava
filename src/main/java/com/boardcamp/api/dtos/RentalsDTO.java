@@ -22,5 +22,4 @@ public class RentalsDTO {
     @Positive
     @Min(value = 1)
     private int daysRented;
-
 }
