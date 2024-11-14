@@ -2,8 +2,6 @@ package com.boardcamp.api;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.time.LocalDate;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,14 +23,6 @@ import com.boardcamp.api.repositories.CustomersRepository;
 import com.boardcamp.api.repositories.GameStockRepository;
 import com.boardcamp.api.repositories.GamesRepository;
 import com.boardcamp.api.repositories.RentalsRepository;
-
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Positive;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")

@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
 
 import com.boardcamp.api.dtos.GamesDTO;
-import com.boardcamp.api.models.GameStockModel;
 import com.boardcamp.api.models.GamesModel;
 import com.boardcamp.api.repositories.CustomersRepository;
 import com.boardcamp.api.repositories.GameStockRepository;
@@ -79,7 +78,7 @@ public class GameIntegrationTests {
     void givenRepeatedGame_whenCreatingGame_thenThrowsError() {
 
         GamesModel game = new GamesModel(null, "test", "test", 2, 2000);
-        GamesModel createdGame = gamesRepository.save(game);
+        gamesRepository.save(game);
 
         GamesDTO gameDTO = new GamesDTO(
                 game.getName(),
