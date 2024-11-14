@@ -27,14 +27,6 @@ public class RentalsModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "customerId", nullable = false)
-    private CustomersModel customer;
-    
-    @ManyToOne
-    @JoinColumn(name = "gameId", nullable = false)
-    private GamesModel game;
-
     private LocalDate rentDate = LocalDate.now();
 
     @Positive
@@ -46,6 +38,15 @@ public class RentalsModel {
     private int originalPrice;
 
     private Long delayFee = Long.valueOf(0);
+
+    @ManyToOne
+    @JoinColumn(name = "customerId", nullable = false)
+    private CustomersModel customer;
+    
+    @ManyToOne
+    @JoinColumn(name = "gameId", nullable = false)
+    private GamesModel game;
+
 
     public RentalsModel(RentalsDTO dto, GamesModel games, CustomersModel customer) {
         this.daysRented = dto.getDaysRented();

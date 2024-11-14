@@ -22,7 +22,7 @@ import com.boardcamp.api.repositories.CustomersRepository;
 import com.boardcamp.api.services.CustomersService;
 
 @SpringBootTest
-class CustomerUnitTest {
+class CustomerUnitTests {
     
     @InjectMocks
     private CustomersService customersService;

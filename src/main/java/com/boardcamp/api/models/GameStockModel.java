@@ -24,7 +24,7 @@ public class GameStockModel {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "gameId", nullable = false)
     private GamesModel game;
 

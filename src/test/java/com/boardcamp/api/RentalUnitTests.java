@@ -13,11 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 
-import com.boardcamp.api.dtos.GamesDTO;
 import com.boardcamp.api.dtos.RentalsDTO;
-import com.boardcamp.api.exceptions.ConflictException;
 import com.boardcamp.api.exceptions.NotfoundException;
 import com.boardcamp.api.models.CustomersModel;
 import com.boardcamp.api.models.GameStockModel;
@@ -30,7 +27,7 @@ import com.boardcamp.api.repositories.RentalsRepository;
 import com.boardcamp.api.services.RentalsService;
 
 @SpringBootTest
-class RentalUnitTest {
+class RentalUnitTests {
 
     @InjectMocks
     private RentalsService rentalsService;
@@ -110,7 +107,7 @@ class RentalUnitTest {
         GamesModel game = new GamesModel(1L, "test", "test", 2, 2000);
 
         doReturn(Optional.of(game)).when(gamesRepository).findById(1L);
-        
+
         doReturn(Optional.empty()).when(customersRepository).findById(1L);
 
         NotfoundException exception = assertThrows(
