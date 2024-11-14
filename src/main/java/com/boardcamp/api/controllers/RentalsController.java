@@ -39,7 +39,13 @@ public class RentalsController {
     public ResponseEntity<RentalsModel> createRental(@RequestBody @Valid RentalsDTO body) {
         RentalsModel rental = rentalsService.createRental(body);
         return ResponseEntity.status(HttpStatus.CREATED).body(rental);
-    }    
+    }
+
+    @PostMapping("/{id}/return")
+    public ResponseEntity<RentalsModel> returnRental(@PathVariable("id") Long id) {
+        RentalsModel rental = rentalsService.returnRental(id);
+        return ResponseEntity.status(HttpStatus.OK).body(rental);
+    }
 
     @DeleteMapping("{id}")
     public ResponseEntity<RentalsModel> deleteRental(@PathVariable("id") Long id) {

@@ -1,5 +1,7 @@
 package com.boardcamp.api.services;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -46,17 +48,54 @@ public class RentalsService {
 
         GameStockModel gameStock = gameStockRepository.findByGameId(body.getGameId());
 
-        if(gameStock.getAvailableStock() == 0) {
+        if (gameStock.getAvailableStock() == 0) {
             throw new UnprocessableEntityException("Não há jogos disponíveis em estoque.");
         }
 
         RentalsModel rentals = new RentalsModel(body, game, customer);
         rentals.setOriginalPrice(game.getPricePerDay() * body.getDaysRented());
         gameStock.setAvailableStock(gameStock.getAvailableStock() - 1);
+        gameStockRepository.save(gameStock);
         return rentalsRepository.save(rentals);
     }
 
+    public RentalsModel returnRental(Long id) {
+        RentalsModel rental = rentalsRepository.findById(id)
+                .orElseThrow(() -> new NotfoundException("O Id " + id + " não foi encontrado."));
+
+        if(rental.getReturnDate() != null) {
+            throw new UnprocessableEntityException("Este aluguel já foi finalizado.");
+        }
+
+        LocalDate today = LocalDate.now();
+        rental.setReturnDate(today);
+
+        if(rental.getRentDate() == null) {
+            throw new UnprocessableEntityException("A data de aluguel não pode ser nula.");
+        }
+
+        Long daysRented = ChronoUnit.DAYS.between(rental.getRentDate(), rental.getReturnDate());
+        Long totalDaysRented = daysRented - rental.getDaysRented();
+
+        if(totalDaysRented > 0) {
+            rental.setDelayFee(totalDaysRented * rental.getGame().getPricePerDay());
+        }
+
+        GameStockModel gameStock = gameStockRepository.findByGameId(rental.getGame().getId());
+
+        if(gameStock != null) {
+            gameStock.setAvailableStock(gameStock.getAvailableStock() + 1);
+            gameStockRepository.save(gameStock);
+        } else {
+            throw new NotfoundException("Estoque não encontrado.");
+        }       
+
+        return rentalsRepository.save(rental);
+    }
+
     public void deleteRental(Long id) {
+        rentalsRepository.findById(id)
+                .orElseThrow(() -> new NotfoundException("O Id " + id + " não foi encontrado."));
         rentalsRepository.deleteById(id);
     }
 

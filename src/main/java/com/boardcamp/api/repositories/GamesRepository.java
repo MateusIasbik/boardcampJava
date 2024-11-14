@@ -10,5 +10,4 @@ import com.boardcamp.api.models.GamesModel;
 @Repository
 public interface GamesRepository extends JpaRepository<GamesModel, Long> {
     public Optional<GamesModel> findByName(String name);
-
 }

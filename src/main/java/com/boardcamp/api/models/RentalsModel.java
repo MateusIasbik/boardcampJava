@@ -1,6 +1,5 @@
 package com.boardcamp.api.models;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import com.boardcamp.api.dtos.RentalsDTO;
 
@@ -42,11 +41,11 @@ public class RentalsModel {
     @Min(value = 1, message = "O número de dias alugados deve ser maior que 0.")
     private int daysRented;
 
-    private Date returnDate = null;
+    private LocalDate returnDate = null;
 
     private int originalPrice;
 
-    private int delayFee = 0;
+    private Long delayFee = Long.valueOf(0);
 
     public RentalsModel(RentalsDTO dto, GamesModel games, CustomersModel customer) {
         this.daysRented = dto.getDaysRented();
