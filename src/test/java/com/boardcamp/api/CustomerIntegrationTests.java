@@ -34,10 +34,10 @@ public class CustomerIntegrationTests {
     @BeforeEach
     @AfterEach
     void cleanUpDatabase() {
-        gamesRepository.deleteAll();
-        customersRepository.deleteAll();
-        rentalsRepository.deleteAll();
         gameStockRepository.deleteAll();
+        rentalsRepository.deleteAll();
+        customersRepository.deleteAll();
+        gamesRepository.deleteAll();
     }
 
 }
